@@ -1,4 +1,4 @@
-package classes;
+package classe;
 
 public class AreaCircTeste {
 
