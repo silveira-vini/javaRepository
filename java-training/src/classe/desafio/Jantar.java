@@ -16,6 +16,9 @@ public class Jantar {
 		
 		System.out.println("Peso de " + p1.nome + " depois de comer " + c1.nome +
 				" e " + c2.nome + ": " + p1.peso + "Kg");
+		
+		System.out.println("testando retomada Eclipse");
+		
 
 }
 }
