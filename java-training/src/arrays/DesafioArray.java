@@ -25,8 +25,8 @@ public class DesafioArray {
 
 		double totalNotas = 0;
 
-		for (double n : notas) {
-			totalNotas += n;
+		for (double nota : notas) {
+			totalNotas += nota;
 
 		}
 
