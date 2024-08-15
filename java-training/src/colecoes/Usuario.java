@@ -1,5 +1,7 @@
 package colecoes;
 
+import java.util.Objects;
+
 public class Usuario {
 
 	String name;
@@ -11,14 +13,10 @@ public class Usuario {
 	public String toString() {
 		return "Meu nome é " + this.name + ".";
 	}
-	
-	
+
 	@Override
 	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((name == null) ? 0 : name.hashCode());
-		return result;
+		return Objects.hash(name);
 	}
 
 	@Override
@@ -30,12 +28,10 @@ public class Usuario {
 		if (getClass() != obj.getClass())
 			return false;
 		Usuario other = (Usuario) obj;
-		if (name == null) {
-			if (other.name != null)
-				return false;
-		} else if (!name.equals(other.name))
-			return false;
-		return true;
+		return Objects.equals(name, other.name);
 	}
 
+
+	
+	
 }
