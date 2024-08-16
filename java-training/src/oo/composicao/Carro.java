@@ -6,6 +6,7 @@ public class Carro {
 
 	void ligar() {
 		motor.ligado = true;
+		motor.fatorInjecao = 1;
 	}
 
 	void desligar() {
