@@ -16,4 +16,7 @@ public class Aluno {
 		curso.alunos.add(this);
 	}
 	
+	public String toString() {
+		return nome;
+	}
 }
