@@ -2,14 +2,26 @@ package oo.thiagoAguiar;
 
 public class User {
 
-	String name;
-	String email;
-	String password;
+	// PROPRIEDADES
+	private String firstName;
+	private String lastName;
 	
-	public void login() {
-		System.out.println("Usuário: " + this.name);
-		System.out.println("Voce logou com o login " + this.email 
-							+ " e senha " + this.password);
+	
+	// CONSTRUTORES
+	public User(String firstName, String lastName) {
+		this.firstName = firstName;
+		this.lastName = lastName;
 	}
 	
+	// MÉTODOS SETTERS & GETTERS:
+	// SETTER
+	public void setFullName(String firstName, String lastName) {
+		this.firstName = firstName.toUpperCase();
+		this.lastName = lastName.toUpperCase();
+	}
+	
+	// GETTER
+	public String getFullName() {
+		return this.firstName + " " + this.lastName;
+	}
 }
