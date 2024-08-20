@@ -57,42 +57,41 @@ public class ContaBanco {
 	public void abrirConta() {
 		if (this.tipo == "cc") {
 			System.out.println("Conta aberta com sucesso");
-			this.saldo = 50.00;
+			this.setSaldo(50.00);
 		} else {
 			System.out.println("Conta aberta com sucesso");
-			this.saldo = 150.00;
+			this.setSaldo(150.00);
 		}
-		this.status = true;
+		this.setStatus(true);
 	}
 
 	public void fecharConta() {
-		if (saldo != 0) {
+		if (this.getSaldo() != 0) {
 			System.out.println("Impossível encerrar a conta");
 			System.out.println("Saldo diferente de zero");
-			System.out.println("Saldo atual: R$ " + this.saldo);
+			System.out.println("Saldo atual: R$ " + this.getSaldo());
 		} else {
-			this.status = false;
+			this.setStatus(false);
 			System.out.println("Conta encerrada com sucesso");
 		}
 	}
 
 	public void depositar(double deposito) {
-		if (this.status == false) {
+		if (this.isStatus() == false) {
 			System.out.println("Impossível depoisitar.");
 			System.out.println("Conta fechada.");
 		} else {
-			this.saldo += deposito;
+			this.setSaldo(this.getSaldo() + deposito);
 			System.out.println("Depósito realizado com sucesso");
 		}
-
 	}
 
 	public void sacar(double saque) {
-		if (this.status != true) {
+		if (this.isStatus() != true) {
 			System.out.println("Impossível sacar.");
 			System.out.println("Conta fechada.");
-		} else if (this.saldo >= saque) {
-			this.saldo -= saque;
+		} else if (this.getSaldo() >= saque) {
+			this.setSaldo(this.getSaldo() - saque);
 			System.out.println("Saque realizado com sucesso");
 		} else {
 			System.out.println("Saldo insuficiente");
@@ -101,14 +100,12 @@ public class ContaBanco {
 
 	public void pagarMensalidade() {
 
-		if (this.tipo == "cc") {
-			this.saldo -= 50.00;
+		if (this.getTipo() == "cc") {
+			this.setSaldo(this.getSaldo() - 50);
 			System.out.println("Mensalidade cobrada com sucesso");
 		} else {
-			this.saldo -= 20.00;
+			this.setSaldo(this.getSaldo() - 20);
 			System.out.println("Mensalidade cobrada com sucesso");
 		}
-
 	}
-
 }
