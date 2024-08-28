@@ -1,81 +1,117 @@
 package oo.cursoEmVideo.aula06;
 
-import java.lang.reflect.Method;
-
-public abstract class ControleRemoto implements Controlador {
+public class ControleRemoto implements Controlador {
 
 	private int volume;
-	private boolean ligar;
+	private boolean ligado;
 	private boolean tocando;
 
 	public ControleRemoto() {
-		this.volume = 50;
-		this.ligar = false;
+		this.volume = 5;
+		this.ligado = false;
 		this.tocando = false;
 	}
 
-	public int getVolume() {
+	private int getVolume() {
 		return volume;
 	}
 
-	public void setVolume(int volume) {
+	private void setVolume(int volume) {
 		this.volume = volume;
 	}
 
-	public boolean isLigado() {
-		return ligar;
+	private boolean getLigado() {
+		return ligado;
 	}
 
-	public void setLigado(boolean ligar) {
-		this.ligar = ligar;
+	private void setLigado(boolean ligado) {
+		this.ligado = ligado;
 	}
 
-	public boolean isTocando() {
+	private boolean getTocando() {
 		return tocando;
 	}
 
-	public void setTocando(boolean tocando) {
+	private void setTocando(boolean tocando) {
 		this.tocando = tocando;
 	}
-	
-	public  Method ligar() {
-		return null;
+
+	@Override
+	public void ligar() {
+		this.setLigado(true);
+		System.out.println("TV Ligada");
 	}
 
-	public Method desligar() {
-		return null;
+	@Override
+	public void desligar() {
+		this.setLigado(false);
+		System.out.println("Desligando TV...");
 	}
 
-	public Method abrirMenu() {
-		return null;
+	@Override
+	public void abrirMenu() {
+		System.out.println("----MENU----");
+		System.out.println("Está ligado: " + this.getLigado());
+		System.out.println("Está tocando: " + this.getTocando());
+		System.out.print("Volume: " + this.getVolume());
+		for (int i = 0; i < this.getVolume(); i++) {
+			System.out.print("|");
+		}
+		System.out.println("");
 	}
 
-	public Method fecharMenu() {
-		return null;
+	@Override
+	public void fecharMenu() {
+		System.out.println("Fechando Menu...");
 	}
 
-	public Method aumentarVolume() {
-		return null;
+	@Override
+	public void maisVolume() {
+		if (this.getLigado()) {
+			this.setVolume(this.getVolume() + 1);
+			System.out.println("Volume: " + this.getVolume());
+		}
 	}
 
-	public Method abaixarVolume() {
-		return null;
+	@Override
+	public void menosVolume() {
+		if (this.getLigado()) {
+			this.setVolume(this.getVolume() - 1);
+			System.out.println("Volume: " + this.getVolume());
+		}
 	}
 
-	public Method mudo() {
-		return null;
+	@Override
+	public void ligarMudo() {
+
+		if (this.getLigado() && this.getVolume() > 0) {
+			this.setVolume(0);
+			System.out.println("MUDO");
+		}
 	}
 
-	public Method mudoOff() {
-		return null;
+	@Override
+	public void desligarMudo() {
+		if (this.getLigado() == true && this.getVolume() == 0) {
+			this.setVolume(5);
+			System.out.println("Volume: " + this.getVolume());
+		}
 	}
 
-	public Method play() {
-		return null;
+	@Override
+	public void play() {
+		if (this.getLigado() && !(this.getTocando())) {
+			this.setTocando(true);
+			System.out.println("Tocando...");
+		}
 	}
 
-	public Method pause() {
-		return null;
-	}
+	@Override
+	public void pause() {
 
+		if (this.getLigado() && this.getTocando()) {
+			this.setTocando(false);
+			System.out.println("Pause");
+		}
+	}
 }

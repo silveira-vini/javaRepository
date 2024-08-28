@@ -1,19 +1,17 @@
 package oo.cursoEmVideo.aula06;
 
-import java.lang.reflect.Method;
-
 public interface Controlador {
 
-	public abstract Method ligar();
-	public abstract Method desligar();
-	public abstract Method abrirMenu();
-	public abstract Method closeMenu();
-	public abstract Method aumentarVolume();
-	public abstract Method abaixarVolume();
-	public abstract Method mudo();
-	public abstract Method mudoOff();
-	public abstract Method play();
-	public abstract Method pause();
-	
+	public abstract void ligar();
+	public abstract void desligar();
+	public abstract void abrirMenu();
+	public abstract void fecharMenu();
+	public abstract void maisVolume();
+	public abstract void menosVolume();
+	public abstract void ligarMudo();
+	public abstract void desligarMudo();
+	public abstract void play();
+	public abstract void pause();
+		
 	
 }
