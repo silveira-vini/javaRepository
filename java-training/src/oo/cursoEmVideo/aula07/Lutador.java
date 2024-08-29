@@ -3,25 +3,26 @@ package oo.cursoEmVideo.aula07;
 public class Lutador {
 
 // ------------- Atributos ------------------------
-	private String nome;
-	private String nacionalidade;
-	private int idade;
-	private double altura;
-	private double peso;
-	private String categoria;
-	private int vitorias;
-	private int derrotas;
-	private int empates;
+	private String nome, nacionalidade, categoria;
+	private double altura, peso;
+	private int idade, vitorias, derrotas, empates;
+
 
 // ------------- Métodos ------------------------
 	public void apresentar() {
-		System.out.printf("Lutando representando o %s temos o Lutador %s. Ele tem %d anos, altura %f, pesando %fkg. Seu recorde é %d-%d-%d.", 
-				getNacionalidade(), getNome(), getIdade(), getAltura(), getPeso(), getVitorias(), getDerrotas(), getEmpates());
+		System.out.println("____________________________________");
+		System.out.printf("Lutando representando o %s temos o Lutador %s.\n"
+				+ "Ele tem %d anos, %.2fm de altura, pesando %.1fkg.\n"
+				+ "Seu recorde é %d-%d-%d.\n", 
+				getNacionalidade(), getNome(), getIdade(), getAltura(), 
+				getPeso(), getVitorias(), getDerrotas(), getEmpates());
 	}
 
 	public void status() {
-		System.out.printf("Nome: %s \n Categoria: %s \n Recorde: %d-%d-%d", 
-				getNome(), getCategoria(), getVitorias(), getDerrotas(), getEmpates());
+		System.out.println("____________________________________");
+		System.out.printf("Nome: %s \nCategoria: %s \nRecorde: %d-%d-%d \n", 
+				getNome(), getCategoria(), getVitorias(), 
+				getDerrotas(), getEmpates());
 	}
 
 	public void ganharLuta() {
@@ -50,7 +51,7 @@ public class Lutador {
 	}
 
 // ------------- Getters & Setters ------------------------
-	private String getNome() {
+	public String getNome() {
 		return nome;
 	}
 
@@ -70,7 +71,7 @@ public class Lutador {
 		return idade;
 	}
 
-	private void setIdade(int idade) {
+	public void setIdade(int idade) {
 		this.idade = idade;
 	}
 
@@ -86,17 +87,17 @@ public class Lutador {
 		return peso;
 	}
 
-	private void setPeso(double peso) {
+	public void setPeso(double peso) {
 		this.peso = peso;
 		setCategoria();
 	}
 
-	private String getCategoria() {
+	public String getCategoria() {
 		return categoria;
 	}
 
 	private void setCategoria() {
-		if (peso < 52.2) {
+		if (this.peso < 52.2) {
 			this.categoria = "Inválido";
 		} else if (peso <= 70.3) {
 			this.categoria = "Leve";
