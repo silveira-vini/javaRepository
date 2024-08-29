@@ -1,6 +1,6 @@
 package oo.cursoEmVideo.aula09;
 
-public class Leitura {
+public class ProjetoLivro {
 
 	public static void main(String[] args) {
 		
@@ -33,7 +33,5 @@ public class Leitura {
 		
 		
 		
-		
 	}
-	
 }

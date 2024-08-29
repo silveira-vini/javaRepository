@@ -31,67 +31,71 @@ public class Livro implements Publicacao {
 			System.out.println("O livro está fechado");
 		}
 	}
-
+	
+	
 // Getters and Setters ---------------------------------
 
-	public String getTitulo() {
+	private String getTitulo() {
 		return titulo;
 	}
 
-	public void setTitulo(String titulo) {
+	private void setTitulo(String titulo) {
 		this.titulo = titulo;
 	}
 
-	public String getAutor() {
+	private String getAutor() {
 		return autor;
 	}
 
-	public void setAutor(String autor) {
+	private void setAutor(String autor) {
 		this.autor = autor;
 	}
 
-	public int getTotPaginas() {
+	private int getTotPaginas() {
 		return totPaginas;
 	}
 
-	public void setTotPaginas(int totPaginas) {
+	private void setTotPaginas(int totPaginas) {
 		this.totPaginas = totPaginas;
 	}
 
-	public int getPagAtual() {
+	private int getPagAtual() {
 		return pagAtual;
 	}
 
-	public void setPagAtual(int pagAtual) {
+	private void setPagAtual(int pagAtual) {
 		this.pagAtual = pagAtual;
 	}
 
-	public boolean isAberto() {
+	private boolean isAberto() {
 		return aberto;
 	}
 
-	public void setAberto(boolean aberto) {
+	private void setAberto(boolean aberto) {
 		this.aberto = aberto;
 	}
 
-	public Pessoa getLeitor() {
+	private Pessoa getLeitor() {
 		return leitor;
 	}
 
-	public void setLeitor(Pessoa leitor) {
+	private void setLeitor(Pessoa leitor) {
 		this.leitor = leitor;
 	}
 
 // Métodos da interface ------------------
 
+	@Override
 	public void abrir() {
 		this.setAberto(true);
 	}
 
+	@Override
 	public void fechar() {
 		this.setAberto(false);
 	}
 
+	@Override
 	public void folhear(int pagina) {
 		if (pagina > this.getTotPaginas()) {
 			this.setPagAtual(this.getTotPaginas());
@@ -100,6 +104,7 @@ public class Livro implements Publicacao {
 		}
 	}
 
+	@Override
 	public void avancarPag() {
 		if (this.getPagAtual() < this.getTotPaginas()) {
 			this.setPagAtual(this.getPagAtual() + 1);
@@ -107,6 +112,7 @@ public class Livro implements Publicacao {
 		
 	}
 
+	@Override
 	public void voltarPag() {
 		if (this.getPagAtual() > 0) {
 			this.setPagAtual(this.getPagAtual() - 1);

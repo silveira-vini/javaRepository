@@ -15,7 +15,7 @@ public class Pessoa {
 
 // método-----------------
 	public void fazerAniver() {
-		idade++;
+		this.idade++;
 	}
 
 // Getters and Setters-----------
