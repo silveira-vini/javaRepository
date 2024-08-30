@@ -35,18 +35,22 @@ public class Livro implements Publicacao {
 	
 // Getters and Setters ---------------------------------
 
+	@SuppressWarnings("unused")
 	private String getTitulo() {
 		return titulo;
 	}
 
+	@SuppressWarnings("unused")
 	private void setTitulo(String titulo) {
 		this.titulo = titulo;
 	}
 
+	@SuppressWarnings("unused")
 	private String getAutor() {
 		return autor;
 	}
 
+	@SuppressWarnings("unused")
 	private void setAutor(String autor) {
 		this.autor = autor;
 	}
@@ -55,6 +59,7 @@ public class Livro implements Publicacao {
 		return totPaginas;
 	}
 
+	@SuppressWarnings("unused")
 	private void setTotPaginas(int totPaginas) {
 		this.totPaginas = totPaginas;
 	}
@@ -67,6 +72,7 @@ public class Livro implements Publicacao {
 		this.pagAtual = pagAtual;
 	}
 
+	@SuppressWarnings("unused")
 	private boolean isAberto() {
 		return aberto;
 	}
@@ -75,10 +81,12 @@ public class Livro implements Publicacao {
 		this.aberto = aberto;
 	}
 
+	@SuppressWarnings("unused")
 	private Pessoa getLeitor() {
 		return leitor;
 	}
 
+	@SuppressWarnings("unused")
 	private void setLeitor(Pessoa leitor) {
 		this.leitor = leitor;
 	}
