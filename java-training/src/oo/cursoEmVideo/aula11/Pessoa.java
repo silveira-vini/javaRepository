@@ -2,9 +2,9 @@ package oo.cursoEmVideo.aula11;
 
 public abstract class Pessoa {
 
-	private String nome;
-	private int idade;
-	private String sexo;
+	protected String nome;
+	protected int idade;
+	protected String sexo;
 	
 	public final void fazerAniv() {
 		this.idade++;

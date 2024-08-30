@@ -14,13 +14,18 @@ public class Principal {
 		System.out.println(v1.toString());
 		
 		Aluno a1 = new Aluno();
+		a1.setNome("Claudio");
+		a1.setCurso("ADS");
+		a1.setSexo("M");
 		System.out.println(a1.toString());
+		a1.pagarMensalidade();
 		
 		Bolsista b1 = new Bolsista();
-		b1.pagarMensalidade();
 		b1.setNome("Rafael");
-		b1.pagarMensalidade();
+		b1.setSexo("M");
+		b1.setIdade(25);
 		System.out.println(b1.toString());
+		b1.pagarMensalidade();
 	}
 
 }
