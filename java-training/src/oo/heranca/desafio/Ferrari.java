@@ -4,27 +4,16 @@ public class Ferrari extends Carro {
 
 	@Override
 	public void acelerar() {
-		;
-		
+		if (this.getVelocidade() > this.getVELOCIDADE_MAXIMA()) {
+			this.setVelocidade(this.getVELOCIDADE_MAXIMA());
+		} else {
+			this.setVelocidade(getVELOCIDADE_MAXIMA() + 15);
+		}
 	}
 
 	@Override
 	public void freiar() {
-		super.freiar();
+		this.setVelocidade(getVelocidade() - 15);
 	}
-
-	@Override
-	public int getVelocidade() {
-		return super.getVelocidade();
-	}
-
-	@Override
-	public void setVelocidade(int velocidade) {
-		super.setVelocidade(velocidade);
-	}
-
-	
-
-	
 
 }
