@@ -11,7 +11,7 @@ public class Carros {
 	public static void main(String[] args) {
 
 		Carro c1 = new Carro("GM", "Onix", 5, 95, 145);
-		Carro c2 = new Carro("Fiat", "Mobi", 4, 65, 110);
+		Carro c2 = new Carro("Fiat", "Mobi", 3, 65, 110);
 		Carro c3 = new Carro("Volkswagem", "Up", 4, 95, 120);
 		Carro c4 = new Carro("Renault", "Sandero", 5, 110, 140);
 		Carro c5 = new Carro("Citroen", "C4 Palas", 5, 120, 150);
