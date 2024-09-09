@@ -4,31 +4,39 @@ public class ChecadaVxNaoChecada {
 
 	public static void main(String[] args) {
 
+		System.out.println("Começou o programa");
+
+		erro1();
+
 		try {
-			geraErro1();
-		} catch (Exception e) {
+			erro2();
+		} catch (RuntimeException e) {
 			System.out.println(e.getMessage());
 		}
 
 		try {
-			geraErro2();
+			erro3();
 		} catch (Exception e) {
-			e.getMessage();
+			System.out.println(e.getMessage());
+			;
 		}
-		
-		
+
 		System.out.println("Fim do programa");
-
 	}
 
-	// não checada ou não verificada
-	static void geraErro1() {
+	// não checada ou não verificada (o erro não foi tratado)
+	static void erro1() {
 		throw new RuntimeException("Ocorreu um erro #1");
-
 	}
 
-	// Exceção checada ou verificada
-	static void geraErro2() throws Exception {
-		throw new Exception("Ocorreu um erro #2");
+	// checada ou verificada (o erro não tratado, porém não era necessário, pois não
+	// gera erro de compilação)
+	static void erro2() {
+		throw new RuntimeException("Ocorreu um erro #2");
+	}
+
+	// Exceção checada ou verificada (o tratamento é obrigatório)
+	static void erro3() throws Exception {
+		throw new Exception("Ocorreu um erro #3");
 	}
 }
