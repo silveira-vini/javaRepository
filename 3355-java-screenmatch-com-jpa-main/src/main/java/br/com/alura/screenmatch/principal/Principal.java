@@ -9,7 +9,6 @@ import br.com.alura.screenmatch.service.ConsumoApi;
 import br.com.alura.screenmatch.service.ConverteDados;
 
 import java.util.*;
-import java.util.stream.Collectors;
 
 public class Principal {
 
@@ -33,7 +32,12 @@ public class Principal {
                     1 - Buscar séries
                     2 - Buscar episódios
                     3 - Listar séries pesquisadas
+                    4 - Buscar série por título
+                    5 - Buscar série por ator
+                    6 - Buscar as Top 5 séries
+                    
                     0 - Sair""";
+
             var opcao = -1;
             while (opcao != 0) {
                 System.out.println(menu);
@@ -49,6 +53,15 @@ public class Principal {
                         break;
                     case 3:
                         listarSeriesBuscadas();
+                        break;
+                    case 4:
+                        buscarSeriePorTitulo();
+                        break;
+                    case 5:
+                        buscarSeriePorAtor();
+                        break;
+                    case 6:
+                        buscarTop5();
                         break;
                     case 0:
                         System.out.println("Saindo...");
@@ -73,17 +86,14 @@ public class Principal {
         System.out.println("Digite o nome da série para busca");
         var nomeSerie = leitura.nextLine();
         var json = consumo.obterDados(ENDERECO + nomeSerie.replace(" ", "+") + API_KEY);
-        DadosSerie dados = conversor.obterDados(json, DadosSerie.class);
-        return dados;
+        return conversor.obterDados(json, DadosSerie.class);
     }
 
     private void buscarEpisodioPorSerie() {
         listarSeriesBuscadas();
         System.out.println("Digite a série que vc quer buscar episódios");
         var nomeSerie = leitura.nextLine();
-        Optional<Serie> serie = series.stream()
-                .filter(s -> s.getTitulo().toLowerCase().contains(nomeSerie.toLowerCase()))
-                .findFirst();
+        var serie = repositorio.findByTituloContainingIgnoreCase(nomeSerie);
 
         if (serie.isPresent()) {
             var serieEncontrada = serie.get();
@@ -116,5 +126,29 @@ public class Principal {
 
     }
 
+    private void buscarSeriePorTitulo() {
+        System.out.println("Digite a série que vc quer buscar episódios");
+        var nomeSerie = leitura.nextLine();
+        var serieBuscada = repositorio.findByTituloContainingIgnoreCase(nomeSerie);
+        if (serieBuscada.isPresent()) {
+            System.out.println(serieBuscada.get());
+        } else {
+            System.out.println("Série não encontrada");
+        }
+    }
 
+    private void buscarSeriePorAtor() {
+        System.out.println("Qual o nome do ator/atriz para busca: ");
+        var nomeAtor = leitura.nextLine();
+        System.out.println("Avaliações a partir de qual valor: ");
+        var avaliacao = leitura.nextDouble();
+        var seriesEcontradas = repositorio.findByAtoresContainingIgnoreCaseAndAvaliacaoGreaterThanEqual(nomeAtor, avaliacao);
+        System.out.println("Séries em que " + nomeAtor + " trabalhou:");
+        seriesEcontradas.forEach(s -> System.out.println(s.getTitulo() + " - Avaliação: " + s.getAvaliacao()));
+    }
+
+    private void buscarTop5() {
+        var top5series = repositorio.findTop5ByOrderByAvaliacaoDesc();
+        top5series.forEach(s -> System.out.println(s.getTitulo() + " - Avaliação: " + s.getAvaliacao()));
+    }
 }
