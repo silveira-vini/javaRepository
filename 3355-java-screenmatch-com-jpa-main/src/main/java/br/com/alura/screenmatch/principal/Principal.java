@@ -17,10 +17,8 @@ public class Principal {
     private List<DadosSerie> dadosSeries = new ArrayList<>();
     private List<Serie> series = new ArrayList<>();
     private final SerieRepository repositorio;
-
-    public Principal(SerieRepository repositorio) {
-        this.repositorio = repositorio;
-    }
+    public Optional<Serie> serieBuscada;
+    public Principal(SerieRepository repositorio) {this.repositorio = repositorio;}
 
     public void exibeMenu() {
         try {
@@ -35,6 +33,7 @@ public class Principal {
                     7 - Buscar séries por categoria
                     8 - Buscar por qtde Temporadas e Avaliação
                     9 - Buscar por trecho do título do episódio
+                    10 - Buscar os Top 5 episódios de uma séries
                     
                     0 - Sair""";
 
@@ -72,6 +71,9 @@ public class Principal {
                     case 9:
                         buscarTrechoTitulo();
                         break;
+                    case 10:
+                        topCincoPorSerie();
+                        break;
                     case 0:
                         System.out.println("Saindo...");
                         break;
@@ -102,10 +104,10 @@ public class Principal {
         listarSeriesBuscadas();
         System.out.println("Digite a série que vc quer buscar episódios");
         var nomeSerie = leitura.nextLine();
-        var serie = repositorio.findByTituloContainingIgnoreCase(nomeSerie);
+        serieBuscada = repositorio.findByTituloContainingIgnoreCase(nomeSerie);
 
-        if (serie.isPresent()) {
-            var serieEncontrada = serie.get();
+        if (serieBuscada.isPresent()) {
+            Serie serieEncontrada = serieBuscada.get();
             List<DadosTemporada> temporadas = new ArrayList<>();
 
             for (int i = 1; i <= serieEncontrada.getTotalTemporadas(); i++) {
@@ -137,8 +139,8 @@ public class Principal {
 
     private void buscarSeriePorTitulo() {
         System.out.println("Digite a série que vc quer buscar episódios");
-        var nomeSerie = leitura.nextLine();
-        var serieBuscada = repositorio.findByTituloContainingIgnoreCase(nomeSerie);
+        String nomeSerie = leitura.nextLine();
+        serieBuscada = repositorio.findByTituloContainingIgnoreCase(nomeSerie);
         if (serieBuscada.isPresent()) {
             System.out.println(serieBuscada.get());
         } else {
@@ -186,5 +188,16 @@ public class Principal {
         List<Episodio> episodiosPorTrecho = repositorio.episodiosPorTrecho(trechoTitulo);
         episodiosPorTrecho.forEach(e -> System.out.printf("Série: %s - Temporada: %d - Episódio %d - %s",
                 e.getSerie().getTitulo(), e.getTemporada(), e.getNumeroEpisodio(), e.getTitulo()));
+    }
+
+    private void topCincoPorSerie() {
+        buscarSeriePorTitulo();
+        if (serieBuscada.isPresent()) {
+            List<Episodio> topEpisodios = repositorio.topCincoEpisodiosPorSerie(serieBuscada.get());
+            topEpisodios.forEach(e -> {
+                System.out.printf("Série: %s - Temporada: %d - Episódio %d - %s - Avaliação: %.1f\n",
+                        e.getSerie().getTitulo(), e.getTemporada(), e.getNumeroEpisodio(), e.getTitulo(), e.getAvaliacao());
+            });
+        }
     }
 }
