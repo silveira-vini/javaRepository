@@ -1,4 +1,4 @@
-package br.com.alura.screenmatch.service.tradutor;
+package br.com.alura.vsflix.service.tradutor;
 
 import com.fasterxml.jackson.annotation.JsonAlias;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;

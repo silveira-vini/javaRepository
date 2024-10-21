@@ -1,4 +1,4 @@
-package br.com.alura.screenmatch.model;
+package br.com.alura.vsflix.model;
 
 public enum Categoria {
 
@@ -8,14 +8,15 @@ public enum Categoria {
     DRAMA("Drama", "Drama"),
     CRIME("Crime", "Crime"),
     AVENTURA("Adventure", "Aventura"),
-    BIOGRAFIA("Biography", "Biografia");
+    BIOGRAFIA("Biography", "Biografia"),
+    ANIMACAO("Animation", "Animação");
 
     private String categoriaOmdb;
-    private String categoriaPortuges;
+    private String categoriaPortugues;
 
-    Categoria(String categoriaOmdb, String categoriaPortuges) {
+    Categoria(String categoriaOmdb, String categoriaPortugues) {
         this.categoriaOmdb = categoriaOmdb;
-        this.categoriaPortuges = categoriaPortuges;
+        this.categoriaPortugues = categoriaPortugues;
     }
 
     public static Categoria fromString(String text) {
@@ -29,7 +30,7 @@ public enum Categoria {
 
     public static Categoria fromPortugues(String text) {
         for (Categoria categoria : Categoria.values()) {
-            if (categoria.categoriaPortuges.equalsIgnoreCase(text)) {
+            if (categoria.categoriaPortugues.equalsIgnoreCase(text)) {
                 return categoria;
             }
         }

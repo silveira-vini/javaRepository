@@ -1,4 +1,4 @@
-package br.com.alura.screenmatch.service;
+package br.com.alura.vsflix.service;
 
 import java.io.IOException;
 import java.net.URI;
@@ -23,7 +23,6 @@ public class ConsumoApi {
             throw new RuntimeException(e);
         }
 
-        String json = response.body();
-        return json;
+        return response.body();
     }
 }

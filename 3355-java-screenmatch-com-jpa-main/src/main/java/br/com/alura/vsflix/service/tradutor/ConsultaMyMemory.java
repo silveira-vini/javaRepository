@@ -1,6 +1,6 @@
-package br.com.alura.screenmatch.service.tradutor;
+package br.com.alura.vsflix.service.tradutor;
 
-import br.com.alura.screenmatch.service.ConsumoApi;
+import br.com.alura.vsflix.service.ConsumoApi;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 

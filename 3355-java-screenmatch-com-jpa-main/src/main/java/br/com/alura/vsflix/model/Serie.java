@@ -1,6 +1,6 @@
-package br.com.alura.screenmatch.model;
+package br.com.alura.vsflix.model;
 
-import br.com.alura.screenmatch.service.tradutor.ConsultaMyMemory;
+import br.com.alura.vsflix.service.tradutor.ConsultaMyMemory;
 import jakarta.persistence.*;
 
 import java.util.ArrayList;

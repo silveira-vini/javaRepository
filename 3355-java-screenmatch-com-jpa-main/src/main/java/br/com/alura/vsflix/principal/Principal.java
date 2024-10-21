@@ -1,9 +1,9 @@
-package br.com.alura.screenmatch.principal;
+package br.com.alura.vsflix.principal;
 
-import br.com.alura.screenmatch.model.*;
-import br.com.alura.screenmatch.repository.SerieRepository;
-import br.com.alura.screenmatch.service.ConsumoApi;
-import br.com.alura.screenmatch.service.ConverteDados;
+import br.com.alura.vsflix.model.*;
+import br.com.alura.vsflix.repository.SerieRepository;
+import br.com.alura.vsflix.service.ConsumoApi;
+import br.com.alura.vsflix.service.ConverteDados;
 
 import java.util.*;
 
@@ -14,9 +14,9 @@ public class Principal {
     private final ConverteDados conversor = new ConverteDados();
     private final String ENDERECO = "https://www.omdbapi.com/?t=";
     private final String API_KEY = "&apikey=6585022c";
-    private List<DadosSerie> dadosSeries = new ArrayList<>();
     private List<Serie> series = new ArrayList<>();
     private final SerieRepository repositorio;
+    private String nomeSerie;
     public Optional<Serie> serieBuscada;
 
     public Principal(SerieRepository repositorio) {
@@ -96,13 +96,18 @@ public class Principal {
     private void buscarSerieWeb() {
         DadosSerie dados = getDadosSerie();
         Serie serie = new Serie(dados);
-        repositorio.save(serie);
-        System.out.println(dados);
+        serieBuscada = repositorio.findByTituloContainingIgnoreCase(nomeSerie);
+        if (serieBuscada.isPresent()) {
+            System.out.println(serieBuscada.get());
+        } else {
+            repositorio.save(serie);
+            System.out.println(dados);
+        }
     }
 
     private DadosSerie getDadosSerie() {
         System.out.println("Digite o nome da série para busca");
-        var nomeSerie = input.nextLine();
+        nomeSerie = input.nextLine();
         var json = consumo.obterDados(ENDERECO + nomeSerie.replace(" ", "+") + API_KEY);
         return conversor.obterDados(json, DadosSerie.class);
     }
