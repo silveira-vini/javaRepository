@@ -3,6 +3,7 @@ package br.com.alura.vsflix.service;
 import br.com.alura.vsflix.dto.EpisodioDTO;
 import br.com.alura.vsflix.dto.SerieDTO;
 import br.com.alura.vsflix.model.Categoria;
+import br.com.alura.vsflix.model.Episodio;
 import br.com.alura.vsflix.model.Serie;
 import br.com.alura.vsflix.repository.SerieRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -61,6 +62,16 @@ public class SerieService {
                 toList()).orElse(null);
     }
 
+    public List<EpisodioDTO> obterTop5Episodios(Long id) {
+        return converterDadosEpisodios(repositorio.top5EpisodiosPorId(id));
+    }
+
+    private List<EpisodioDTO> converterDadosEpisodios(List<Episodio> episodios) {
+        return episodios.stream()
+                .map(e -> new EpisodioDTO(e.getTemporada(),e.getNumeroEpisodio(), e.getTitulo()))
+                .collect(Collectors.toList());
+    }
+
     private List<SerieDTO> converteSeriesDTO(List<Serie> series) {
         return series.stream()
                 .map(s -> new SerieDTO(s.getId(),
@@ -84,5 +95,6 @@ public class SerieService {
                 s.getPoster(),
                 s.getSinopse());
     }
+
 
 }

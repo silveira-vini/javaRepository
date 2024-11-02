@@ -2,7 +2,6 @@ package br.com.alura.vsflix.controler;
 
 import br.com.alura.vsflix.dto.EpisodioDTO;
 import br.com.alura.vsflix.dto.SerieDTO;
-import br.com.alura.vsflix.model.Categoria;
 import br.com.alura.vsflix.service.SerieService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -54,4 +53,8 @@ public class SerieController {
         return servico.obterSeriesCategoria(genero);
     }
 
+    @GetMapping("/{id}/temporadas/top5")
+    public List<EpisodioDTO> obterTop5Episodios(@PathVariable Long id) {
+        return servico.obterTop5Episodios(id);
+    }
 }
