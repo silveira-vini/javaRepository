@@ -7,6 +7,6 @@ import ribeiro.silveira.vinicius.MovieRandon.model.Frase;
 public interface FraseRepository extends JpaRepository<Frase, Long> {
 
     @Query("SELECT f FROM Frase f order by function('RANDOM') LIMIT 1")
-    Frase sortearFraseSerie();
+    Frase buscaFraseAleatoria();
 
 }
